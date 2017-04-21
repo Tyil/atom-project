@@ -2,7 +2,12 @@
 
 main()
 {
-    local output=$(find "${HOME}/projects/"* -maxdepth 1 -type d | dmenu)
+    if [ -z "${PROJECT_HOME}"]
+    then
+        PROJECT_HOME="${HOME}/projects/"
+    fi
+
+    local output=$(find "${PROJECT_HOME}"* -maxdepth 1 -type d | dmenu)
 
     cd "$output"
     atom .
